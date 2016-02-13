@@ -7,11 +7,13 @@
 #include "PCB.h"
 
 /*
-Group 5: Nok Him Nam, Jowy Tran, Mark Johnson, David Humphreys
-Date : 28/ 01/ 2015
-Assignment : Problem 2 - Scheduling
-*/
-
+ ===========================================================================
+ Name        : 422_HW3.c
+ Date        : 2/12/2016
+ Authors     : Nok Him Nam, Jowy Tran, Mark Johnson, David Humphreys
+ Description : Discontinuities with I/O service request traps and interrupts
+ ===========================================================================
+ */
 // returns the pointer to the list; NULL if list not created
 PCB_p createPCB(char* name, int newPid, int newPriority, int theInterruptSimulator,
 	int thePcValue, State theState) {

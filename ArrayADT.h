@@ -1,3 +1,11 @@
+/*
+ ===========================================================================
+ Name        : 422_HW3.c
+ Date        : 2/12/2016
+ Authors     : Nok Him Nam, Jowy Tran, Mark Johnson, David Humphreys
+ Description : Discontinuities with I/O service request traps and interrupts
+ ===========================================================================
+ */
 #ifndef ARRAYADT_H
 #define ARRAYADT_H
 #include "LinkedListADT.h"

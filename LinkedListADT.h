@@ -3,10 +3,13 @@
 #include "PCB.h"
 
 /*
-Group 5: Nok Him Nam, Jowy Tran, Mark Johnson, David Humphreys
-Date : 28/ 01/ 2015
-Assignment : Problem 2 - Scheduling
-*/
+ ===========================================================================
+ Name        : 422_HW3.c
+ Date        : 2/12/2016
+ Authors     : Nok Him Nam, Jowy Tran, Mark Johnson, David Humphreys
+ Description : Discontinuities with I/O service request traps and interrupts
+ ===========================================================================
+ */
 
 typedef struct FIFO_queue * FIFO_queue_p;
 
