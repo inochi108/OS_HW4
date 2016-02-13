@@ -1,15 +1,3 @@
-//Don't Terminate PCBs anywhere, should be done in function call
-
-//A process termination print out would look like:
-//Process terminated: PID 334 at <system time>
-//Where system time here is the termination time for the process.
-//A timer interrupt would look like:
-//Timer interrupt: PID 22 was running, PID 425 dispatched
-//An I/O Completion interrupt would look like:
-//I/O completion interrupt: PID 34 is running, PID 667 put in ready queue
-//An I/O trap request would look like:
-//I/O trap request: I/O device 1, PID 4761 put into waiting queue, PID 387 dispatched
-
 /*
  ===========================================================================
  Name        : 422_HW3.c
@@ -18,6 +6,22 @@
  Description : Discontinuities with I/O service request traps and interrupts
  ===========================================================================
  */
+
+/*                      NOTE:
+=====================================================================
+Don't Terminate PCBs anywhere, should be done in function call
+A process termination print out would look like:
+Process terminated: PID 334 at <system time>
+Where system time here is the termination time for the process.
+A timer interrupt would look like:
+Timer interrupt: PID 22 was running, PID 425 dispatched
+An I/O Completion interrupt would look like:
+I/O completion interrupt: PID 34 is running, PID 667 put in ready queue
+An I/O trap request would look like:
+I/O trap request: I/O device 1, PID 4761 put into waiting queue, PID 387 dispatched
+================================================================================
+*/
+
 #include <pthread.h>
 #include <stdio.h>
 #include "PCB.h"
