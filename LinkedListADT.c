@@ -33,7 +33,7 @@ void createRandomPCB(FIFO_queue_p theList, int theNumberOfPCB) {
     for (PCBCounter = 0; PCBCounter < theNumberOfPCB; PCBCounter++) {
         srand(time(NULL) * (PCBCounter + 1));
         sprintf(processNameSetUp, "Process%d", PCBCounter);
-        tempPCB = createPCB(processNameSetUp, PCBCounter, rand() % 15, 0, 0, ready);
+        tempPCB = createPCB(processNameSetUp, PCBCounter, rand() % 4, 0, 0, ready);
         enqueue(theList, tempPCB);
         toString(tempPCB);
 
@@ -123,7 +123,7 @@ void printList(FIFO_queue_p theList) {
 		struct node *current = theList->frontNode_ptr;
  		//printf("//-----------------------------\n");
 		while (current != NULL) {
-			printf("Process %d with terminate %d-> ", current->data->pid, current->data->terminate);
+			printf("Process %s with pid %d-> ", current->data->name, current->data->pid);
 			current = current->next;
 		}
 

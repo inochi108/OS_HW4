@@ -28,18 +28,22 @@ struct PCB {
 	char name[20];
 	int pid;
 	int priority;
+        int tempPriority;
 	int interrupt_simulator;
 	unsigned int pc;
 	State currentState;
-
+        
 	// new stuff
         int max_pc; //jowy added
 	char* creation; //jowy renamed to match diagram
 	char* termination; //jowy renamed to match diagram
 	int terminate;
 	int term_count; //jowy renamed to match diagram
+        int runTimes;
 	int IO_1_traps[4]; //jowy renamed to match diagram
 	int IO_2_traps[4]; //jowy renamed to match diagram
+        
+        
 };
 
 typedef struct PCB* PCB_p;
@@ -70,6 +74,9 @@ void setTheState(PCB_p pcb, State theState);
 void generateArray(int arrayOne[4], int arrayTwo[4]);
 void printArray(int theArray[4]);
 char* getTheCurrentTime(void);
+
+PCB_p createOneRandomPCB(char* name, int thePid, int theInterruptSimulator);
+
 
 
 #endif

@@ -17,8 +17,8 @@
 // returns the pointer to the list; NULL if list not created
 PCB_p createPCB(char* name, int newPid, int newPriority, int theInterruptSimulator,
 	int thePcValue, State theState) {
-	if (newPriority > 15 || newPriority < 0) {
-		printf("Error 1212123: Priority must be 0 - 15. PCD not Created.");
+	if (newPriority > 4 || newPriority < 0) {
+		printf("Error 1212123: Priority must be 0 - 4. PCD not Created.");
 	}
 	//struct control_block_type testing;
 	PCB_p pcb = malloc(sizeof(struct PCB));
@@ -27,21 +27,73 @@ PCB_p createPCB(char* name, int newPid, int newPriority, int theInterruptSimulat
 
             strcpy(pcb->name, name);
             pcb->pid = newPid;
+            //-----------------------------
             pcb->priority = newPriority;
+            pcb->tempPriority = newPriority;
+            //-----------------------------
             pcb->interrupt_simulator = theInterruptSimulator;
             pcb->pc = thePcValue;
             pcb->currentState = theState;
 
             //New stuff
-            //pcb->max_pc = ?   jowy added  (do we need a new parameter?)
             pcb->creation = getTheCurrentTime();
             pcb->terminate = (rand() % 11) +1;
             pcb->term_count = 0;
+            pcb->runTimes = 0;
+            
             generateArray(pcb->IO_1_traps, pcb->IO_2_traps);
 
 	}
 	return pcb;
 }
+
+PCB_p createOneRandomPCB(char* name, int thePid, int theInterruptSimulator) {
+   
+    int tempPriority;
+    int i = 0 ;
+    //struct control_block_type testing;
+    PCB_p pcb = malloc(sizeof(struct PCB));
+    // if allocation was successful
+    if (pcb != NULL) {
+
+        strcpy(pcb->name, name);
+        pcb->pid = thePid;
+        srand(time(NULL));
+        
+        tempPriority = rand() % 100;
+        
+        if(tempPriority < 5) {
+            pcb->priority = 0;
+        } else if(tempPriority < 85) {
+            pcb->priority = 1;
+        } else if (tempPriority < 95) {
+            pcb->priority = 2;
+        } else {
+            pcb->priority = 3;
+        }
+        
+        pcb->interrupt_simulator = theInterruptSimulator;
+        pcb->pc = 0;
+        pcb->currentState = ready;
+
+        //New stuff
+        //pcb->max_pc = ?   jowy added  (do we need a new parameter?)
+        pcb->creation = getTheCurrentTime();
+        pcb->terminate = (rand() % 11) +1;
+        pcb->term_count = 0;
+        
+        if( pcb->interrupt_simulator == 1) {
+            generateArray(pcb->IO_1_traps, pcb->IO_2_traps);
+        } else {
+            for(i = 0; i < 4; i++) {
+                pcb->IO_1_traps[i] = -1;
+                pcb->IO_2_traps[i] = -1;
+            }
+        }
+    }
+    return pcb;
+}
+
 //Creates an IDLE PCB
 // returns the pointer to the list; NULL if list not created
 PCB_p createIdlePCB() {
@@ -52,7 +104,7 @@ PCB_p createIdlePCB() {
 
         strcpy(pcb->name, "IDLE_PCB");
         pcb->pid = -1;
-        pcb->priority = 15;
+        pcb->priority = 4;
         pcb->interrupt_simulator = 0;
         pcb->pc = 0;
         pcb->currentState = running;

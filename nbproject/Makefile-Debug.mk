@@ -38,7 +38,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/ArrayADT.o \
 	${OBJECTDIR}/Driver.o \
 	${OBJECTDIR}/LinkedListADT.o \
-	${OBJECTDIR}/PCB.o
+	${OBJECTDIR}/PCB.o \
+	${OBJECTDIR}/main.o
 
 
 # C Compiler Flags
@@ -84,6 +85,11 @@ ${OBJECTDIR}/PCB.o: PCB.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/PCB.o PCB.c
+
+${OBJECTDIR}/main.o: main.c 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.c
 
 # Subprojects
 .build-subprojects:
